@@ -104,3 +104,5 @@ ENV/
 # IDE
 .idea/
 
+.pytest_cache/
+webapp/.pytest_cache/
