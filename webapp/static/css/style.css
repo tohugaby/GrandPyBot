@@ -17,3 +17,15 @@ body {
     color: white;
 
 }
+
+footer nav ul {
+    width: 100%;
+}
+
+footer img {
+    height: 50px;
+}
+
+/*img {*/
+    /*border: solid 1px black;*/
+/*}*/
