@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<div class="container-fluid">
-    <header>
+<div class="container-fluid ">
+    <header class="fixed-top">
         <nav class="navbar navbar-light bg-light row">
             <a href="#" class="navbar-brand">
                 <img src="{{url_for('static', filename='images/papy.jpg') }}" alt="super papy"
@@ -25,10 +25,8 @@
                     src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
                     alt="Fork me on GitHub"></a>
         </nav>
-
-
     </header>
-    <div>
+    <div class="content-wrap">
         <form action="post">
             <div class="form-group">
                 <label for="search">Demande moi ce que je sais sur le lieu de ton
@@ -39,21 +37,17 @@
             <button class="btn btn-colored-border">Raconte-moi !</button>
         </form>
     </div>
-
     <footer class="fixed-bottom">
-        <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-center">
+        <nav class="navbar navbar-light bg-light justify-content-center">
             <p class="nav-text">Réalisé par Tom Gabrièle</p>
         </nav>
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
-
-            <ul class="navbar-nav justify-content-center">
-
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <ul class="navbar-nav justify-content-center hidden-mobile">
                 <li class="nav-item">
                     <a href="https://openclassrooms-student-center.github.io/alumnis/students/tom.html" target="_blank"
                        class="nav-link">
                         <img src="{{ url_for('static', filename='images/openclassrooms.svg') }}" width="76"
                              alt="Openclassrooms alumni">
-
                     </a>
                 </li>
                 <li class="nav-item">
@@ -64,14 +58,31 @@
                 <li class="nav-item">
                     <a href="https://github.com/tomlemeuch" target="_blank" class="nav-link">
                         <img src="{{ url_for('static', filename='images/github.svg') }}" width="76" alt="Github">
-
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav justify-content-center visible-mobile">
+                <li class="nav-item">
+                    <a href="https://openclassrooms-student-center.github.io/alumnis/students/tom.html" target="_blank"
+                       class="nav-link">
+                        Openclassrooms
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.linkedin.com/in/tom-gabriele-python-addict/" target="_blank" class="nav-link">
+                        LinkedIn
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/tomlemeuch" target="_blank" class="nav-link">
+                        Github
                     </a>
                 </li>
             </ul>
         </nav>
-
     </footer>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
