@@ -71,5 +71,13 @@ class CitiesParser(NonLettersParser):
         city_name_list = [city[2] for city in city_list]
         return city_name_list
 
-    def _parse_string(self):
-        return self._apply_parsing(self._get_compare_list(), contained=True)
+
+class CountriesParser(NonLettersParser):
+    def _get_compare_list(self):
+        country_list = list()
+        with open(os.path.join(data_files_path, "countries/sql-pays.csv")) as file:
+            line = file.read().replace('"', "")
+            line_list = line.split("\n")
+            country_list += [country.split(",") for country in line_list if len(country) > 1]
+        country_name_list = sorted([country[4] for country in country_list] + [country[5] for country in country_list])
+        return country_name_list

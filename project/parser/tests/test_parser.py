@@ -1,4 +1,5 @@
-from project.parser.parsers import LegacyParser, StopWordsParser, FrenchWordsParser, NonLettersParser, CitiesParser
+from project.parser.parsers import LegacyParser, StopWordsParser, FrenchWordsParser, NonLettersParser, CitiesParser, \
+    CountriesParser
 
 
 class TestLegacyParser:
@@ -76,8 +77,18 @@ class TestCitiesParser:
 
 
 class TestCountriesParser:
-    pass
+    def setup_method(self):
+        self.in_string = "Ola  ! Que sais-tu du Japon ?"
 
+    def teardown_method(self):
+        pass
+
+    def test_parse_string(self):
+        parser = CountriesParser(self.in_string)
+        assert isinstance(parser.out_list, list)
+        assert parser.out_list != self.in_string
+        assert len(self.in_string) > len(parser.out_list)
+        assert "Japon" in parser.out_list
 
 # class TestLastWordParser:
 #     pass
