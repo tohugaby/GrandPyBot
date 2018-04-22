@@ -12,6 +12,8 @@ pytest = "*"
 flask-testing = "*"
 selenium = "*"
 blinker = "*"
+flask-sqlalchemy = "*"
+blueprint = "*"
 
 
 [dev-packages]
