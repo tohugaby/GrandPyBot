@@ -1,0 +1,20 @@
+3054643	Budapest	Budapest	BUD,Boedapes,Boedapest,Boudapes,Boudapeste,Boudapès,Budaipeist,Budapescht,Budapeshha,Budapesht,Budapesht osh,Budapest,Budapesta,Budapestas,Budapeste,Budapesti,Budapestinum,Budapesto,Budapeszt,Budapeŝto,Budapeşt,Budapeşte,Budapešt,Budapešta,Budapeštas,Budapešť,Budapèst,Budapésht,Budimpeshta,Budimpesta,Budimpešta,Bùdapest,Bùdapeszt,Búdaipeist,Búdapest,Gorad Budapesht,bu da pei si,budapaisata,budapeseuteu,budapesrr,budapest,budapesta,budapesuto,bwdabst,bwdabyst,bwdapst,bwdpst,putapest,Βουδαπέστη,Будапешт,Будапешт ош,Будапеща,Будимпешта,Горад Будапешт,Բուդապեշտ,בודאפעשט,בודפשט,بودابست,بودابيست,بوداپست,بوداپێست,بوډاپسټ,बुडापेस्ट,बुदापेस्त,বুদাপেস্ট,ਬੁਦਾਪੈਸਤ,બુડાપેસ્ટ,ବୁଦାପେଷ୍ଟ,புடாபெஸ்ட்,ಬುಡಾಪೆಸ್ಟ್,ബുഡാപെസ്റ്റ്,บูดาเปสต์,བུ་ད་ཕེ་སིད།,ဗူးဒပက်မြို့,ბუდაპეშტი,ቡዳፔስት,ブダペスト,布达佩斯,부다페스트	47.49801	19.03991	P	PPLC	HU		05				1741041		111	Europe/Budapest	2017-06-06
+7284823	Budapest XII. kerület	Budapest XII. keruelet		47.49192	19.01493	P	PPLX	HU		05				56544		168	Europe/Budapest	2010-04-01
+7284824	Budapest XI. kerület	Budapest XI. keruelet		47.47603	19.03605	P	PPLX	HU		05				139049		107	Europe/Budapest	2010-04-01
+7284826	Budapest VIII. kerület	Budapest VIII. keruelet		47.48919	19.07012	P	PPLX	HU		05				82222		115	Europe/Budapest	2010-04-01
+7284828	Budapest VI. kerület	Budapest VI. keruelet	Terezvaros,Terézváros,Theresienstadt,VI. Budapester Bezirk	47.50369	19.06583	P	PPLX	HU		05				42120		117	Europe/Budapest	2016-10-14
+7284830	Budapest XIII. kerület	Budapest XIII. keruelet		47.52978	19.08068	P	PPLX	HU		05				113531		106	Europe/Budapest	2016-10-14
+7284831	Budapest IV. kerület	Budapest IV. keruelet		47.56182	19.08909	P	PPLX	HU		05				98374		109	Europe/Budapest	2010-04-01
+7284832	Budapest XV. kerület	Budapest XV. keruelet		47.56263	19.11681	P	PPLX	HU		05				80218		111	Europe/Budapest	2010-04-01
+7284833	Budapest XVI. kerület	Budapest XVI. keruelet		47.51482	19.17028	P	PPLX	HU		05				68484		146	Europe/Budapest	2016-10-14
+7284834	Budapest X. kerület	Budapest X. keruelet		47.4791	19.15835	P	PPLX	HU		05				79270		136	Europe/Budapest	2010-04-01
+7284835	Budapest XIX. kerület	Budapest XIX. keruelet		47.45293	19.14943	P	PPLX	HU		05				61610		124	Europe/Budapest	2010-04-01
+7284836	Budapest XVIII. kerület	Budapest XVIII. keruelet		47.44417	19.17595	P	PPLX	HU		05				93225		127	Europe/Budapest	2010-04-01
+7284837	Budapest XXIII. kerület	Budapest XXIII. keruelet		47.39788	19.11492	P	PPLX	HU		05				20387		105	Europe/Budapest	2010-04-01
+7284838	Budapest XXII. kerület	Budapest XXII. keruelet		47.42698	19.04016	P	PPLX	HU		05				50499		104	Europe/Budapest	2010-04-01
+7284839	Budapest XXI. kerület	Budapest XXI. keruelet		47.43047	19.07098	P	PPLX	HU		05				76339		105	Europe/Budapest	2010-04-01
+7284840	Budapest XX. kerület	Budapest XX. keruelet		47.43674	19.10093	P	PPLX	HU		05				63371		114	Europe/Budapest	2010-04-01
+7284841	Budapest XVII. kerület	Budapest XVII. keruelet		47.47997	19.25388	P	PPLX	HU		05				78250		137	Europe/Budapest	2010-04-01
+7284842	Budapest III. kerület	Budapest III. keruelet		47.54157	19.04501	P	PPLX	HU		05				123723		109	Europe/Budapest	2016-10-14
+7284843	Budapest II. kerület	Budapest II. keruelet		47.51984	19.02218	P	PPLX	HU		05				88729		202	Europe/Budapest	2016-02-24
+7284844	Budapest I. kerület	Budapest I. keruelet		47.49705	19.03961	P	PPLX	HU		05				24728		150	Europe/Budapest	2010-04-01
