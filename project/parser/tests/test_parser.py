@@ -3,7 +3,7 @@ from flask_testing import TestCase
 from project import app
 from project.parser.models import db
 from project.parser.parsers import LegacyParser, StopWordsParser, FrenchWordsParser, NonLettersParser, CitiesParser, \
-    CountriesParser
+    CountriesParser, UniqueLetterParser, BeforeLinkWorkParser, AfterLinkWorkParser
 from project.parser.word_files_handler.initial_data_handlers import FiletoDbHandler
 
 
@@ -35,6 +35,56 @@ class TestNonLettersParser:
         assert parser.out_list != self.in_string
         assert len(self.in_string) > len(parser.out_list)
         assert "OpenClassrooms" in parser.out_list
+
+
+class TestUniqueLetterParser:
+    def setup_method(self):
+        self.in_string = "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms à Paris ?"
+
+    def teardown_method(self):
+        pass
+
+    def test_parse_string(self):
+        parser = UniqueLetterParser(self.in_string)
+        assert isinstance(parser.out_list, list)
+        assert parser.out_list != self.in_string
+        assert len(self.in_string) > len(parser.out_list)
+        assert "OpenClassrooms" in parser.out_list
+        assert "à" not in parser.out_list
+
+
+class TestBeforeLinkWorkParser:
+    def setup_method(self):
+        self.in_string = "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms à Paris ?"
+
+    def teardown_method(self):
+        pass
+
+    def test_parse_string(self):
+        parser = BeforeLinkWorkParser(self.in_string)
+        assert isinstance(parser.out_list, list)
+        assert parser.out_list != self.in_string
+        assert len(self.in_string) > len(parser.out_list)
+        assert len(parser.out_list) == 1
+        assert "OpenClassrooms" in parser.out_list
+        assert "à" not in parser.out_list
+
+
+class TestAfterLinkWorkParser:
+    def setup_method(self):
+        self.in_string = "Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms à Paris ?"
+
+    def teardown_method(self):
+        pass
+
+    def test_parse_string(self):
+        parser = AfterLinkWorkParser(self.in_string)
+        assert isinstance(parser.out_list, list)
+        assert parser.out_list != self.in_string
+        assert len(self.in_string) > len(parser.out_list)
+        assert len(parser.out_list) == 1
+        assert "Paris" in parser.out_list
+        assert "à" not in parser.out_list
 
 
 class TestStopWordsParser(TestCase):
