@@ -38,7 +38,8 @@ class Config(object):
     }
 
 
-class TestConfig(object):
+
+class TestConfig(Config):
     DEBUG = True
     TESTING = True
     CSRF_ENABLED = True

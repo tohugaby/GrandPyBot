@@ -1,6 +1,10 @@
+import logging
 import re
 
 from project.parser.models import WordType, Word
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 class LegacyParser:
@@ -10,7 +14,7 @@ class LegacyParser:
     def __init__(self, in_string):
         self.in_string = in_string
         self.out_list = self._parse_string()
-        print(self.out_list)
+        logger.debug(" %s: %s" % (self.__class__, self.out_list))
 
     def _parse_string(self):
         return self._apply_parsing(self._get_compare_list())
@@ -86,7 +90,7 @@ class UniqueLetterParser(NonLettersParser):
 
 class BeforeLinkWorkParser(LegacyParser):
     def _split_string(self):
-        link_words = ('à', 'chez')
+        link_words = ('à', 'chez', 'au', 'en')
         tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", self.in_string)
         link_words_indexes = [index for index, word in enumerate(tmp_out_list) if word in link_words]
         tmp_out_list = [tmp_out_list[index - 1] for index in link_words_indexes]

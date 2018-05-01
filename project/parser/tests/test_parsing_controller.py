@@ -29,12 +29,38 @@ class TestParsingControler(TestCase):
         self.assertIn("Openclassrooms", result)
         self.assertEqual(result[0], "Openclassrooms")
 
-
     def test_second_controller(self):
-        self.in_string= "Je paris que tu ne sais pas où se trouve Saint-Étienne"
+        self.in_string = "Je paris que tu ne sais pas où se trouve Saint-Étienne"
         controler = ParsingControler(self.in_string)
         result = controler.out_list
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
         self.assertIn("Saint-Étienne", result)
         self.assertEqual(result[0], "Saint-Étienne")
+
+    def test_third_controller(self):
+        self.in_string = "Que peux-tu me dire sur les Champs-Élysées?"
+        controler = ParsingControler(self.in_string)
+        result = controler.out_list
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+        self.assertIn("Champs-Élysées", result)
+        self.assertEqual(result[0], "Champs-Élysées")
+
+    def test_fourth_controller(self):
+        self.in_string = "Je cherche la place Carnot"
+        controler = ParsingControler(self.in_string)
+        result = controler.out_list
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+        self.assertIn("Carnot", result)
+        self.assertEqual(result[0], "Carnot")
+
+    def test_fifth_controller(self):
+        self.in_string = "Je paris que tu sais pas où se trouve strasbourg!"
+        controler = ParsingControler(self.in_string)
+        result = controler.out_list
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+        self.assertIn("strasbourg", result)
+        self.assertEqual(result[0], "strasbourg")

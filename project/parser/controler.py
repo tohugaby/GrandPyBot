@@ -1,7 +1,11 @@
+import logging
 from collections import OrderedDict
 
 from project.parser.parsers import NonLettersParser, StopWordsParser, FrenchWordsParser, CitiesParser, CountriesParser, \
     UniqueLetterParser, BeforeLinkWorkParser, AfterLinkWorkParser
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 class ParsingControler:
@@ -20,7 +24,9 @@ class ParsingControler:
         self.in_string = in_string
         if parsers:
             self.parsers = parsers
+        logger.info(" Start parsing: %s" % self.in_string)
         self.out_list = self._compile_results()
+        logger.info(" Parsing finished: %s" % self.out_list)
 
     def _parser_launcher(self, parser):
         """
@@ -49,7 +55,6 @@ class ParsingControler:
         higher score is better
         :return:
         """
-        results = list()
         tmp_dict = dict()
         for partial_result in self._paralize_parsing():
             for i, value in enumerate(partial_result[0]):
@@ -59,8 +64,9 @@ class ParsingControler:
                 else:
                     tmp_dict[value] = (i + 1) * partial_result[1]
         tmp_dict = OrderedDict(sorted(tmp_dict.items(), key=lambda x: x[1], reverse=True))
-        print(tmp_dict)
-        results = [key for key in tmp_dict.keys()]
-        print(results)
+        logger.debug(" words grades: %s" % tmp_dict)
+        grade_average = sum([value for value in tmp_dict.values()]) / len(tmp_dict)
+        results = [key for key, value in tmp_dict.items() if value > grade_average]
+        logger.debug(" %s" % results)
 
         return results
