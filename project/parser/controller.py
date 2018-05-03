@@ -1,14 +1,21 @@
+"""
+Controller module that calls all parser
+"""
+
 import logging
 from collections import OrderedDict
 
-from project.parser.parsers import NonLettersParser, StopWordsParser, FrenchWordsParser, CitiesParser, CountriesParser, \
-    UniqueLetterParser, BeforeLinkWorkParser, AfterLinkWorkParser
+from project.parser.parsers import BeforeLinkWorkParser, AfterLinkWorkParser, NonLettersParser, \
+    UniqueLetterParser, StopWordsParser, FrenchWordsParser, CountriesParser, CitiesParser
 
 logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
-class ParsingControler:
+class ParsingController:
+    """
+    Controller that launch all parser and define by weight ordered list results
+    """
     parsers = [
         (BeforeLinkWorkParser, 2),
         (AfterLinkWorkParser, 0.5),
@@ -24,25 +31,20 @@ class ParsingControler:
         self.in_string = in_string
         if parsers:
             self.parsers = parsers
-        logger.info(" Start parsing: %s" % self.in_string)
+        LOGGER.info(" Start parsing: %s", self.in_string)
         self.out_list = self._compile_results()
-        logger.info(" Parsing finished: %s" % self.out_list)
+        LOGGER.info(" Parsing finished: %s", self.out_list)
 
     def _parser_launcher(self, parser):
         """
         launch a parser
         :param parser: parser class
-        :param weight: weight of result
         :return: a list
         """
         return parser(self.in_string).out_list
 
     def _paralize_parsing(self):
         parsers_output = []
-        # agents = 5
-        # chunksize = 3
-        # with Pool(processes=agents) as pool:
-        #     parsers_output = pool.map(self._parser_launcher, [parser for parser,weight in self.parsers], chunksize)
         for parser, weight in self.parsers:
             partial_result = self._parser_launcher(parser)
             parsers_output.append((partial_result, weight))
@@ -64,9 +66,9 @@ class ParsingControler:
                 else:
                     tmp_dict[value] = (i + 1) * partial_result[1]
         tmp_dict = OrderedDict(sorted(tmp_dict.items(), key=lambda x: x[1], reverse=True))
-        logger.debug(" words grades: %s" % tmp_dict)
+        LOGGER.debug(" words grades: %s", tmp_dict)
         grade_average = sum([value for value in tmp_dict.values()]) / len(tmp_dict)
         results = [key for key, value in tmp_dict.items() if value > grade_average]
-        logger.debug(" %s" % results)
+        LOGGER.debug(" %s", results)
 
         return results

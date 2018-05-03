@@ -15,6 +15,9 @@ blinker = "*"
 flask-sqlalchemy = "*"
 blueprint = "*"
 "psycopg2" = "*"
+requests = "*"
+requests-mock = "*"
+pylint = "*"
 
 
 [dev-packages]

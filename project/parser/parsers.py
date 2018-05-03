@@ -1,20 +1,23 @@
+"""
+All the parsers used to parse user question.
+"""
 import logging
 import re
 
 from project.parser.models import WordType, Word
 
 logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
 class LegacyParser:
-    """A parser that take an in string and return a list of word after comparing this string with another list of
-    words"""
+    """A parser that take an in string and return a list of word
+    after comparing this string with another list of words"""
 
     def __init__(self, in_string):
         self.in_string = in_string
         self.out_list = self._parse_string()
-        logger.debug(" %s: %s" % (self.__class__, self.out_list))
+        LOGGER.debug(" %s: %s", self.__class__, self.out_list)
 
     def _parse_string(self):
         return self._apply_parsing(self._get_compare_list())
@@ -24,8 +27,10 @@ class LegacyParser:
 
     def _apply_parsing(self, compare_list, contained=True):
         """
-        Compare provided list with comparing list of word and generate a new list containing intersection of both list
-        if contained parameter is True (default usage) or the opposite if contained is False
+        Compare provided list with comparing list of word and
+        generate a new list containing intersection of both list
+        if contained parameter is True (default usage) or
+        the opposite if contained is False
         :param compare_list: list of words used to compare with initial string words
         :param contained: define what to return.
         :return: a list of words
@@ -40,7 +45,8 @@ class LegacyParser:
 
 class NotContainedInListParserMixin:
     """
-    Mixin reverses parsing default usage by returning words of initial string which are not contained in compare list
+    Mixin reverses parsing default usage by returning words of initial string
+    which are not contained in compare list
     """
 
     def _parse_string(self):
@@ -54,7 +60,8 @@ class FromDatabaseCompareListMixin:
 
     def _get_compare_list(self):
         """
-        get compare list from database according provided key which represent a word category in Word table
+        get compare list from database according provided key
+        which represent a word category in Word table
         :return: a list of words.
         """
         if self.key:
@@ -73,36 +80,49 @@ class NonLettersParser(LegacyParser):
         Transform string to list by removing useless symbols, space...
         :return: a list of words
         """
-        tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", self.in_string)
+        tmp_out_list = re.split(r" +|'+|\?+|!+|\.+|_+", self.in_string)
         return tmp_out_list
 
 
 class UniqueLetterParser(NonLettersParser):
+    """
+    Parser to remove unique letters
+    """
+
     def _split_string(self):
         """
         Transform string to list by removing useless symbols, space...
         :return: a list of words
         """
-        tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", self.in_string)
+        tmp_out_list = re.split(r" +|'+|\?+|!+|\.+|_+", self.in_string)
         tmp_out_list = [word for word in tmp_out_list if len(word) > 1]
         return tmp_out_list
 
 
 class BeforeLinkWorkParser(LegacyParser):
+    """
+    words before a link word are sometimes important. This parser will parse them.
+    """
+
     def _split_string(self):
         link_words = ('à', 'chez', 'au', 'en')
-        tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", self.in_string)
-        link_words_indexes = [index for index, word in enumerate(tmp_out_list) if word in link_words]
+        tmp_out_list = re.split(r" +|'+|\?+|!+|\.+|_+", self.in_string)
+        link_words_indexes = [index for index, word in enumerate(tmp_out_list)
+                              if word in link_words]
         tmp_out_list = [tmp_out_list[index - 1] for index in link_words_indexes]
         return tmp_out_list
 
 
 class AfterLinkWorkParser(LegacyParser):
+    """parse word after a link word"""
+
     def _split_string(self):
         link_words = ('à', 'chez', 'au', 'en')
-        tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", self.in_string)
-        link_words_indexes = [index for index, word in enumerate(tmp_out_list) if word in link_words]
-        tmp_out_list = [tmp_out_list[index + 1] for index in link_words_indexes if index + 1 <= len(tmp_out_list)]
+        tmp_out_list = re.split(r" +|'+|\?+|!+|\.+|_+", self.in_string)
+        link_words_indexes = [index for index, word in enumerate(tmp_out_list)
+                              if word in link_words]
+        tmp_out_list = [tmp_out_list[index + 1] for index in link_words_indexes
+                        if index + 1 <= len(tmp_out_list)]
         return tmp_out_list
 
 
@@ -121,7 +141,7 @@ class StopWordsParser(NotContainedInListParserMixin, FromDatabaseCompareListMixi
         for i in index_list:
             if i + 1 <= len(tmp_list):
                 tmp_list[i] = tmp_list[i].lower()
-        tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", " ".join(tmp_list))
+        tmp_out_list = re.split(r" +|'+|\?+|!+|\.+|_+", " ".join(tmp_list))
         return tmp_out_list
 
 
@@ -140,7 +160,7 @@ class FrenchWordsParser(NotContainedInListParserMixin, FromDatabaseCompareListMi
         for i in index_list:
             if i + 1 <= len(tmp_list):
                 tmp_list[i] = tmp_list[i].lower()
-        tmp_out_list = re.split(" +|'+|\?+|!+|\.+|_+", " ".join(tmp_list))
+        tmp_out_list = re.split(r" +|'+|\?+|!+|\.+|_+", " ".join(tmp_list))
         return tmp_out_list
 
 

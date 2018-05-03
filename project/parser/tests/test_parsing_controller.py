@@ -1,7 +1,7 @@
 from flask_testing import TestCase
 
 from project import app
-from project.parser.controler import ParsingControler
+from project.parser.controller import ParsingController
 from project.parser.models import db
 from project.parser.word_files_handler.initial_data_handlers import FiletoDbHandler
 
@@ -22,7 +22,7 @@ class TestParsingControler(TestCase):
         db.drop_all()
 
     def test_controler(self):
-        controler = ParsingControler(self.in_string)
+        controler = ParsingController(self.in_string)
         result = controler.out_list
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
@@ -31,7 +31,7 @@ class TestParsingControler(TestCase):
 
     def test_second_controller(self):
         self.in_string = "Je paris que tu ne sais pas où se trouve Saint-Étienne"
-        controler = ParsingControler(self.in_string)
+        controler = ParsingController(self.in_string)
         result = controler.out_list
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
@@ -40,7 +40,7 @@ class TestParsingControler(TestCase):
 
     def test_third_controller(self):
         self.in_string = "Que peux-tu me dire sur les Champs-Élysées?"
-        controler = ParsingControler(self.in_string)
+        controler = ParsingController(self.in_string)
         result = controler.out_list
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
@@ -49,7 +49,7 @@ class TestParsingControler(TestCase):
 
     def test_fourth_controller(self):
         self.in_string = "Je cherche la place Carnot"
-        controler = ParsingControler(self.in_string)
+        controler = ParsingController(self.in_string)
         result = controler.out_list
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
@@ -58,7 +58,7 @@ class TestParsingControler(TestCase):
 
     def test_fifth_controller(self):
         self.in_string = "Je paris que tu sais pas où se trouve strasbourg!"
-        controler = ParsingControler(self.in_string)
+        controler = ParsingController(self.in_string)
         result = controler.out_list
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
