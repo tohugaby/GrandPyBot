@@ -1,8 +1,9 @@
 from flask import Flask, redirect, url_for
 
+from project.webapp.views import webapp_blueprint
+
 app = Flask(__name__)
 app.config.from_object('config.Config')
-from project.webapp.views import webapp_blueprint
 
 app.register_blueprint(webapp_blueprint, url_prefix="/webapp")
 
