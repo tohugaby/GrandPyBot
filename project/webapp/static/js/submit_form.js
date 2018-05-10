@@ -1,4 +1,4 @@
-const processUrl = "/process";
+const processUrl = "/webapp/process";
 
 
 let submitForm = (url, data, callback) => {
