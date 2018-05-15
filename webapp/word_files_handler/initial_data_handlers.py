@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 
-from project import app
-from project.parser.models import db, WordType, Word
+from webapp import app
+from webapp.models import db, WordType, Word
 
 
 class FiletoDbHandler:

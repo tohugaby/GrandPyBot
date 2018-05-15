@@ -1,4 +1,4 @@
-from project import app
+from webapp import app
 
 
 def insert_stop_words():

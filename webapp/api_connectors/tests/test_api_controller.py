@@ -2,11 +2,10 @@
 module to test api controller
 """
 import json
-
 import requests_mock
 
 from api_keys import GOOGLE_MAP_API_KEY
-from project.api_connectors.controller import ApiController
+from webapp.api_connectors.controller import ApiController
 
 
 @requests_mock.Mocker(kw="mock")

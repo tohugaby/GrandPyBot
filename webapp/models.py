@@ -1,11 +1,8 @@
 """
 Contains all parser db models
 """
-from flask_sqlalchemy import SQLAlchemy
 
-from project import app
-
-db = SQLAlchemy(app)
+from webapp import db
 
 
 class WordType(db.Model):

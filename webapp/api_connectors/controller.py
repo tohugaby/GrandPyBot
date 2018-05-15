@@ -1,7 +1,7 @@
 """
 module to manage api connectors
 """
-from project.api_connectors.connectors import GoogleMapsApiConnector, WikipediaApiConnector
+from webapp.api_connectors.connectors import GoogleMapsApiConnector, WikipediaApiConnector
 
 
 class ApiController:

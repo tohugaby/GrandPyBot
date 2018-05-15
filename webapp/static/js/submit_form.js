@@ -1,4 +1,5 @@
-const processUrl = "/webapp/process";
+const processUrl = "/process";
+let dialog = document.querySelector("#dialog")
 
 
 let submitForm = (url, data, callback) => {
@@ -22,6 +23,13 @@ let searchForm = document.querySelector("form");
 searchForm.addEventListener("submit", (e) => {
     let data = new FormData(searchForm);
     submitForm(processUrl, data, (response) => {
+
+        let response_div = document.createElement("div");
+        response_div.innerHTML = JSON.stringify(response);
+        while (dialog.firstChild){
+            dialog.removeChild(dialog.firstChild)
+        }
+        dialog.appendChild(response_div);
         console.log(response);
     });
     e.preventDefault();

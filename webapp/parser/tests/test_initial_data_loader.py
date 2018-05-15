@@ -1,8 +1,8 @@
 from flask_testing import TestCase
 
-from project import app
-from project.parser.models import db, WordType, Word
-from project.parser.word_files_handler.initial_data_handlers import FiletoDbHandler
+from webapp import app
+from webapp.models import db, WordType, Word
+from webapp import FiletoDbHandler
 
 
 class TestDataLoading(TestCase):

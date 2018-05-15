@@ -1,9 +1,9 @@
 from flask_testing import TestCase
 
-from project import app
-from project.parser.controller import ParsingController
-from project.parser.models import db
-from project.parser.word_files_handler.initial_data_handlers import FiletoDbHandler
+from webapp import app
+from webapp.parser.controller import ParsingController
+from webapp import db
+from webapp import FiletoDbHandler
 
 
 class TestParsingControler(TestCase):

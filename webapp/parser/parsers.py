@@ -4,7 +4,7 @@ All the parsers used to parse user question.
 import logging
 import re
 
-from project.parser.models import WordType, Word
+from webapp.models import WordType, Word
 
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)

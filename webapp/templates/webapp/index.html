@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('webapp.static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 <div class="container-fluid ">
     <header class="fixed-top">
         <nav class="navbar navbar-light bg-light row">
             <a href="#" class="navbar-brand">
-                <img src="{{url_for('webapp.static', filename='images/papy.jpg') }}" alt="super papy"
+                <img src="{{url_for('static', filename='images/papy.jpg') }}" alt="super papy"
                      class="d-inline-block align-middle brand-img">
                 <span class="align-middle">Grand' Py Bot</span>
             </a>
@@ -36,6 +36,9 @@
             </div>
             <button class="btn btn-colored-border">Raconte-moi !</button>
         </form>
+        <div id="dialog">
+
+        </div>
     </div>
     <footer class="fixed-bottom">
         <nav class="navbar navbar-light bg-light justify-content-center">
@@ -46,18 +49,18 @@
                 <li class="nav-item">
                     <a href="https://openclassrooms-student-center.github.io/alumnis/students/tom.html" target="_blank"
                        class="nav-link">
-                        <img src="{{ url_for('webapp.static', filename='images/openclassrooms.svg') }}" width="76"
+                        <img src="{{ url_for('static', filename='images/openclassrooms.svg') }}" width="76"
                              alt="Openclassrooms alumni">
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://www.linkedin.com/in/tom-gabriele-python-addict/" target="_blank" class="nav-link">
-                        <img src="{{ url_for('webapp.static', filename='images/linkedin.svg') }}" width="76" alt="LinkedIn">
+                        <img src="{{ url_for('static', filename='images/linkedin.svg') }}" width="76" alt="LinkedIn">
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="https://github.com/tomlemeuch" target="_blank" class="nav-link">
-                        <img src="{{ url_for('webapp.static', filename='images/github.svg') }}" width="76" alt="Github">
+                        <img src="{{ url_for('static', filename='images/github.svg') }}" width="76" alt="Github">
                     </a>
                 </li>
             </ul>
@@ -93,7 +96,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-<script src="{{ url_for('webapp.static',filename='js/submit_form.js') }}">
+<script src="{{ url_for('static',filename='js/submit_form.js') }}">
 </script>
 </body>
 </html>

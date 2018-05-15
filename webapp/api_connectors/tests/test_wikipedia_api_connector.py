@@ -2,10 +2,9 @@
 tests for wikipedia api connector
 """
 import json
-
 import requests_mock
 
-from project.api_connectors.connectors import WikipediaApiConnector
+from webapp.api_connectors.connectors import WikipediaApiConnector
 
 
 @requests_mock.Mocker(kw="mock")

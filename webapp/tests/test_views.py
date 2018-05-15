@@ -1,6 +1,6 @@
 from flask_testing import TestCase
 
-from project import app
+from webapp import app, db, FiletoDbHandler
 
 
 class TestIndexView(TestCase):
@@ -8,7 +8,7 @@ class TestIndexView(TestCase):
 
     def create_app(self):
         # app = webapp.app
-        app.config["TESTING"] = True
+        app.config.from_object("config.TestConfig")
         return app
 
     def test_success(self):
@@ -24,13 +24,19 @@ class TestProcessView(TestCase):
 
     def create_app(self):
         # app = webapp.app
-        app.config["TESTING"] = True
+        app.config.from_object("config.TestConfig")
         return app
 
+    def setUp(self):
+        self.in_string = "Salut GrandPy ! Est-ce que tu connais l'adresse d'Openclassrooms à Paris ?"
+        db.create_all()
+        for key in app.config["DATA_LOAD_CONFIG"].keys():
+            FiletoDbHandler(db, key)()
+
     def test_success(self):
-        self.assert200(self.client.post("/webapp/process", follow_redirects=True, data=dict(test="text de test")))
+        self.assert200(self.client.post("/process", follow_redirects=True, data=dict(test="text de test")))
 
     def test_return_data(self):
-        request = self.client.post("/webapp/process", follow_redirects=True, data=dict(search="text de test"))
+        request = self.client.post("/process", follow_redirects=True, data=dict(search="text de test"))
         for r in request.response:
             self.assertIsInstance(r, bytes)

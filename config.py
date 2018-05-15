@@ -8,7 +8,6 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = "change_me"
-    SQLALCHEMY_DATABASE_URI = "postgresql://localhost/grandpybot"
 
     # custom variables
     DATA_FOLDER = "data_files"
@@ -36,7 +35,6 @@ class Config(object):
             "handler": "insert_countries"
         }
     }
-
 
 
 class TestConfig(Config):
@@ -70,3 +68,11 @@ class TestConfig(Config):
             "handler": "insert_countries"
         }
     }
+
+
+class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, "grandpy.db")
+
+
+class ProdConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "postgresql://localhost/grandpybot"

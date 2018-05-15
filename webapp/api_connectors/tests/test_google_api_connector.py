@@ -2,10 +2,9 @@
 tests for api connectors
 """
 import json
-
 import requests_mock
 
-from project.api_connectors.connectors import GoogleMapsApiConnector
+from webapp.api_connectors.connectors import GoogleMapsApiConnector
 
 
 @requests_mock.Mocker(kw='mock')

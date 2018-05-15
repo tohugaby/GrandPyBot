@@ -2,10 +2,11 @@
 Controller module that calls all parser
 """
 
-import logging
 from collections import OrderedDict
 
-from project.parser.parsers import BeforeLinkWorkParser, AfterLinkWorkParser, NonLettersParser, \
+import logging
+
+from webapp.parser.parsers import BeforeLinkWorkParser, AfterLinkWorkParser, NonLettersParser, \
     UniqueLetterParser, StopWordsParser, FrenchWordsParser, CountriesParser, CitiesParser
 
 logging.basicConfig(level=logging.DEBUG)
@@ -58,6 +59,7 @@ class ParsingController:
         :return:
         """
         tmp_dict = dict()
+        results = []
         for partial_result in self._paralize_parsing():
             for i, value in enumerate(partial_result[0]):
 
@@ -67,8 +69,9 @@ class ParsingController:
                     tmp_dict[value] = (i + 1) * partial_result[1]
         tmp_dict = OrderedDict(sorted(tmp_dict.items(), key=lambda x: x[1], reverse=True))
         LOGGER.debug(" words grades: %s", tmp_dict)
-        grade_average = sum([value for value in tmp_dict.values()]) / len(tmp_dict)
-        results = [key for key, value in tmp_dict.items() if value > grade_average]
-        LOGGER.debug(" %s", results)
+        if len(tmp_dict):
+            grade_average = sum([value for value in tmp_dict.values()]) / len(tmp_dict)
+            results = [key for key, value in tmp_dict.items() if value >= grade_average]
+            LOGGER.debug(" %s", results)
 
         return results
