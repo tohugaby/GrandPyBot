@@ -32,11 +32,17 @@
                 <label for="search">Demande moi ce que je sais sur le lieu de ton
                     choix</label>
                 <input type="text" class="form-control" id="search" name="search" aria-describedby="searchHelp"
-                       placeholder="quel lieu cherches-tu ?">
+                       placeholder="quel lieu cherches-tu ?" required>
             </div>
             <button class="btn btn-colored-border">Raconte-moi !</button>
         </form>
-        <div id="dialog">
+
+        <div id="dialog" class="discution-block">
+            <div class="answer">
+                <div id="map" style="width:75%;margin: auto;"></div>
+                <h2 id="address"></h2>
+                <div id="description"></div>
+            </div>
 
         </div>
     </div>
@@ -96,7 +102,12 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
+
 <script src="{{ url_for('static',filename='js/submit_form.js') }}">
+
 </script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmbkc5GB_cuVGHU6Uvg47OTO2CmC4rbxk&callback=myMap"></script>
 </body>
 </html>

@@ -21,18 +21,24 @@ def test_wikipedia_api_return(**kwargs):
     opensearch_results = ["OpenClassrooms", ["OpenClassrooms"], ["OpenClassrooms est une école en ligne"],
                           ["https://fr.wikipedia.org/wiki/OpenClassrooms"]]
     query_results = {
-        'pages': {
-            '4338589': {
-                'pageid': 4338589,
-                'ns': 0,
-                'title': 'OpenClassrooms',
-                'extract': '<p><b>OpenClassrooms</b> est une école en ligne...</p>'
+        'query': {
+            'pages': {
+                '4338589': {
+                    'pageid': 4338589,
+                    'ns': 0,
+                    'title': 'OpenClassrooms',
+                    'extract': '<p><b>OpenClassrooms</b> est une école en ligne...</p>'
+                }
             }
         }
+    }
+    response = {
+        'title': 'OpenClassrooms',
+        'description': '<p><b>OpenClassrooms</b> est une école en ligne...</p>'
     }
 
     kwargs["mock"].get(opensearch_url, text=json.dumps(opensearch_results))
     kwargs["mock"].get(search_url, text=json.dumps(query_results))
     fake_results = api_connector_instance.search()
-    assert fake_results == query_results
+    assert fake_results == response
     assert isinstance(fake_results, dict)

@@ -17,6 +17,4 @@ class ApiController:
         results = dict()
         for connector in self.api_list:
             results[connector[1]] = connector[0](self.search_term).search()
-
-        print(results)
         return results

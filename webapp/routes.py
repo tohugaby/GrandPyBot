@@ -15,5 +15,4 @@ def process():
     if "search" in request.form:
         search_terms = request.form["search"]
     results = SearchConductor(search_terms).make_full_search()
-    print(type(results))
     return jsonify(dict(results=results))

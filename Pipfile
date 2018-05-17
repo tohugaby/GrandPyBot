@@ -18,6 +18,7 @@ blueprint = "*"
 requests = "*"
 requests-mock = "*"
 pylint = "*"
+"beautifulsoup4" = "*"
 
 
 [dev-packages]

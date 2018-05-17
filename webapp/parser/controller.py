@@ -19,7 +19,7 @@ class ParsingController:
     """
     parsers = [
         (BeforeLinkWorkParser, 2),
-        (AfterLinkWorkParser, 0.5),
+        (AfterLinkWorkParser, 0.3),
         (NonLettersParser, 1),
         (UniqueLetterParser, 1.1),
         (StopWordsParser, 1.1),

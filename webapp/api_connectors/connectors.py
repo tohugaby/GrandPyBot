@@ -4,6 +4,7 @@ Module that contains all api connectors
 import logging
 
 import requests
+from bs4 import BeautifulSoup
 
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
@@ -52,7 +53,12 @@ class GoogleMapsApiConnector(ApiConnector):
         :return: api json response
         """
         LOGGER.info(" Getting Google maps data for %s", self.search_term)
-        return super(GoogleMapsApiConnector, self).search()
+        response = super(GoogleMapsApiConnector, self).search()
+        new_response = {
+            "formatted_address": response["results"][0]["formatted_address"],
+            "location": response["results"][0]["geometry"]["location"]
+        }
+        return new_response
 
     def get_search_url(self, **kwargs):
         """
@@ -96,4 +102,13 @@ class WikipediaApiConnector(ApiConnector):
         query_term = self._opensearch()
         LOGGER.info("Launch query of %s in wikipedia api", query_term)
         response = requests.get(self.get_search_url(query_term=query_term)).json()
-        return response
+        pages = response['query']['pages']
+        page = [p for p in pages.keys()][0]
+        soup = BeautifulSoup(pages[page]['extract'], "html.parser")
+        description = [p for p in soup.find_all("p")][0]
+
+        new_response = {
+            "title": pages[page]['title'],
+            "description": str(description)
+        }
+        return new_response

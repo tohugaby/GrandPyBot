@@ -1,4 +1,6 @@
-
+/** {*/
+/*border: solid 1px black;*/
+/*}*/
 body
 {
     font-family: 'Raleway', sans-serif;
@@ -21,6 +23,7 @@ footer
     z-index: 1000;
 
     max-height: 110px;
+    margin-top: 50px;
 }
 
 footer .navbar
@@ -56,8 +59,13 @@ footer img
 
 .content-wrap
 {
+    overflow: auto;
+
     min-height: 500px;
-    padding-top: 200px;
+    margin-top: 150px;
+    padding: 20px;
+
+    /*border: solid 1px black;*/
 }
 
 .btn-colored-border
@@ -65,6 +73,16 @@ footer img
     color: white;
     border: solid 1px #c62e1a;
     background-color: #13b5db;
+}
+
+.discution-block
+{
+    width: 80%;
+    margin: 20px auto 110px auto;
+    padding: 10px;
+
+    border-radius: 20px;
+    background: rgba(19, 181, 219, .5);
 }
 
 .hidden-mobile
@@ -109,7 +127,7 @@ footer img
 
     .content-wrap
     {
-        padding-top: 130px;
+        /*padding-top: 130px;*/
     }
 }
 
@@ -124,6 +142,6 @@ footer img
     .content-wrap
     {
         min-height: 280px;
-        padding-top: 130px;
+        /*padding-top: 130px;*/
     }
 }
