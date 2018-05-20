@@ -1,53 +1,44 @@
 /** {*/
 /*border: solid 1px black;*/
 /*}*/
-body
-{
+body {
     font-family: 'Raleway', sans-serif;
 }
 
-header
-{
+header {
     z-index: 1000;
 
     max-height: 200px;
 }
 
-header h1
-{
+header h1 {
     font-size: 1.5em;
 }
 
-footer
-{
+footer {
     z-index: 1000;
 
     max-height: 110px;
     margin-top: 50px;
 }
 
-footer .navbar
-{
+footer .navbar {
     padding: 2px 0;
 }
 
-footer .navbar ul
-{
+footer .navbar ul {
     width: 100%;
 }
 
-footer p
-{
+footer p {
     margin: 0;
 }
 
-footer img
-{
+footer img {
     height: 50px;
 }
 
-.brand-img
-{
+.brand-img {
     display: block;
 
     width: 100px;
@@ -57,8 +48,7 @@ footer img
     border-radius: 50%;
 }
 
-.content-wrap
-{
+.content-wrap {
     overflow: auto;
 
     min-height: 500px;
@@ -68,79 +58,91 @@ footer img
     /*border: solid 1px black;*/
 }
 
-.btn-colored-border
-{
+.btn-colored-border {
     color: white;
     border: solid 1px #c62e1a;
     background-color: #13b5db;
 }
 
-.discution-block
-{
+.discussion-block {
     width: 80%;
     margin: 20px auto 110px auto;
     padding: 10px;
 
+    transition: background-color 1s linear;
+
     border-radius: 20px;
-    background: rgba(19, 181, 219, .5);
+    background-color: rgba(19, 181, 219, .5);
 }
 
-.hidden-mobile
-{
+.hide-me {
+    display: none;
+
+}
+
+.loader {
+/ /
+}
+
+.loader-text {
+    display: inline-block;
+}
+
+.loader-image {
+    display: inline-block;
+}
+
+.loader-image img {
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+}
+
+.hidden-mobile {
     display: none;
 }
 
-.visible-mobile li a
-{
+.visible-mobile li a {
     font-size: .8em;
 
     padding: 3px 0;
 }
 
-@media screen and (min-width: 576px)
-{
-    header h1
-    {
+@media screen and (min-width: 576px) {
+    header h1 {
         font-size: 2em;
 
         display: block;
     }
 
-    .hidden-mobile
-    {
+    .hidden-mobile {
         display: flex;
     }
 
-    .visible-mobile
-    {
+    .visible-mobile {
         display: none;
     }
 }
 
-@media screen and (max-height: 500px)
-{
+@media screen and (max-height: 500px) {
     header h1,
-    footer .navbar:nth-child(2)
-    {
+    footer .navbar:nth-child(2) {
         display: none;
     }
 
-    .content-wrap
-    {
+    .content-wrap {
         /*padding-top: 130px;*/
     }
 }
 
-@media screen and (max-height: 300px)
-{
+@media screen and (max-height: 300px) {
     header .navbar a:nth-child(3),
-    footer .navbar
-    {
+    footer .navbar {
         display: none;
     }
 
-    .content-wrap
-    {
+    .content-wrap {
         min-height: 280px;
         /*padding-top: 130px;*/
     }

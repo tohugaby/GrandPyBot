@@ -15,7 +15,7 @@
     <header class="fixed-top">
         <nav class="navbar navbar-light bg-light row">
             <a href="#" class="navbar-brand">
-                <img src="{{url_for('static', filename='images/papy.jpg') }}" alt="super papy"
+                <img src="{{ url_for('static', filename='images/papy.jpg') }}" alt="super papy"
                      class="d-inline-block align-middle brand-img">
                 <span class="align-middle">Grand' Py Bot</span>
             </a>
@@ -37,8 +37,16 @@
             <button class="btn btn-colored-border">Raconte-moi !</button>
         </form>
 
-        <div id="dialog" class="discution-block">
+        <div id="dialog" class="discussion-block">
             <div class="answer">
+                <div class="loader hide-me">
+                    <div class="loader-image">
+                        <img src="{{ url_for('static', filename='images/thinker.jpg') }}" alt="réflexion...">
+                    </div>
+                    <div class="loader-text">
+                        Recherche en cours
+                    </div>
+                </div>
                 <div id="map" style="width:75%;margin: auto;"></div>
                 <h2 id="address"></h2>
                 <div id="description"></div>
