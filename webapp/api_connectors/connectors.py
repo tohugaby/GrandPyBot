@@ -91,7 +91,8 @@ class WikipediaApiConnector(ApiConnector):
         :return: a new search term
         """
         LOGGER.info("Launch opensearch of %s in wikipedia api", self.search_term)
-        return requests.get(self.get_search_url()).json()[1][0]
+        result = requests.get(self.get_search_url()).json()
+        return result[1][0], result[3][0]
 
     def search(self):
         """
@@ -99,7 +100,7 @@ class WikipediaApiConnector(ApiConnector):
         :return: query result as a dict
         """
 
-        query_term = self._opensearch()
+        query_term, article_url = self._opensearch()
         LOGGER.info("Launch query of %s in wikipedia api", query_term)
         response = requests.get(self.get_search_url(query_term=query_term)).json()
         pages = response['query']['pages']
@@ -109,6 +110,7 @@ class WikipediaApiConnector(ApiConnector):
 
         new_response = {
             "title": pages[page]['title'],
-            "description": str(description)
+            "description": str(description),
+            "url": str(article_url)
         }
         return new_response

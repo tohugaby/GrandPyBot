@@ -114,7 +114,8 @@ class TestSearchConductor(TestCase):
                                         'location': {'lat': 48.8747578, 'lng': 2.350564700000001}},
             'wikipedia_api_results': {
                 'title': 'OpenClassrooms',
-                'description': '<p><b>OpenClassrooms</b> est une école en ligne...</p>'
+                'description': '<p><b>OpenClassrooms</b> est une école en ligne...</p>',
+                'url': "https://fr.wikipedia.org/wiki/OpenClassrooms"
             }
         }
 

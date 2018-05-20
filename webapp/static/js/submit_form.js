@@ -3,10 +3,11 @@ let mapDiv = document.getElementById("map");
 let dialogDiv = document.getElementById("dialog");
 let addressDiv = document.getElementById("address");
 let descriptionDiv = document.getElementById("description");
+let moreInfoLink = document.getElementById("more-info");
 let loaderDiv = document.getElementsByClassName("loader")[0];
 let loaderText = loaderDiv.getElementsByClassName("loader-text")[0];
 let initialLoaderText = loaderText.innerHTML;
-console.log(loaderText);
+
 let colors = ['#c62e1a', '#13b5db', 'yellow'];
 let loadInterval = null;
 let loader = (loading) => {
@@ -25,7 +26,7 @@ let loader = (loading) => {
         } else {
             clearInterval(loadInterval);
             loaderDiv.classList.add("hide-me");
-            dialogDiv.style.backgroundColor = '#13b5db'
+            dialogDiv.style.backgroundColor = 'rgba(19, 181, 219, .5)';
             loaderText.innerHTML = initialLoaderText;
         }
     }
@@ -46,6 +47,7 @@ function myMap(lat, long) {
 let submitForm = (url, data, callback) => {
     addressDiv.textContent = "";
     descriptionDiv.textContent = "";
+    moreInfoLink.textContent = "";
     let req = new XMLHttpRequest();
     req.open("POST", url);
     req.addEventListener("load", () => {
@@ -78,6 +80,8 @@ searchForm.addEventListener("submit", (e) => {
         mapDiv.style.height = '400px';
         addressDiv.textContent = googleData.formatted_address;
         descriptionDiv.innerHTML = wikiData.description;
+        moreInfoLink.href = wikiData.url;
+        moreInfoLink.innerText = "En savoir plus."
     });
     e.preventDefault();
 });

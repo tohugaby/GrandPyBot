@@ -34,7 +34,8 @@ def test_wikipedia_api_return(**kwargs):
     }
     response = {
         'title': 'OpenClassrooms',
-        'description': '<p><b>OpenClassrooms</b> est une école en ligne...</p>'
+        'description': '<p><b>OpenClassrooms</b> est une école en ligne...</p>',
+        'url': "https://fr.wikipedia.org/wiki/OpenClassrooms"
     }
 
     kwargs["mock"].get(opensearch_url, text=json.dumps(opensearch_results))
