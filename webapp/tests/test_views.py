@@ -38,5 +38,19 @@ class TestProcessView(TestCase):
 
     def test_return_data(self):
         request = self.client.post("/process", follow_redirects=True, data=dict(search="text de test"))
-        for r in request.response:
-            self.assertIsInstance(r, bytes)
+        for response in request.response:
+            self.assertIsInstance(response, bytes)
+
+
+class TestSentencesView(TestCase):
+    render_templates = False
+
+    def create_app(self):
+        app.config.from_object("config.TestConfig")
+        return app
+
+    def test_success(self):
+        request = self.client.get("/sentences", follow_redirects=True)
+        self.assert200(request)
+        for response in request.response:
+            self.assertIsInstance(response, bytes)

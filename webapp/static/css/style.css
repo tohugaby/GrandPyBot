@@ -65,14 +65,38 @@ footer img {
 }
 
 .discussion-block {
-    width: 80%;
+    width: 90%;
     margin: 20px auto 110px auto;
     padding: 10px;
+    min-height: auto;
+    overflow: auto;
 
-    transition: background-color 1s linear;
+    transition: border-color 1s linear;
 
     border-radius: 20px;
+    border: solid 1px;
+
+}
+
+.answer {
+    min-height: 0;
+    border-radius: 20px;
+    margin: 20px auto;
+    width: 70%;
+    padding: 5px;
+
+}
+
+.answer-grandpy {
     background-color: rgba(19, 181, 219, .5);
+    float: right;
+
+}
+
+.answer-user {
+    background-color: rgba(202, 219, 216, 0.5);
+    float: left;
+
 }
 
 .hide-me {
@@ -81,7 +105,7 @@ footer img {
 }
 
 .loader {
-/ /
+//
 }
 
 .loader-text {
