@@ -1,4 +1,5 @@
 const processUrl = "/process";
+let searchBtn = document.getElementById("search-btn");
 let mapDiv = document.getElementById("map");
 let dialogDiv = document.getElementById("dialog");
 let addressDiv = document.getElementById("address");
@@ -45,6 +46,7 @@ function myMap(lat, long) {
 
 
 let submitForm = (url, data, callback) => {
+    searchBtn.disabled = true;
     addressDiv.textContent = "";
     descriptionDiv.textContent = "";
     moreInfoLink.textContent = "";
@@ -54,9 +56,11 @@ let submitForm = (url, data, callback) => {
         if (req.status >= 200 && req.status < 400) {
             callback(req.responseText);
             loader(false);
+            searchBtn.disabled = false;
         } else {
             console.error(req.status + " " + req.statusText + " " + url)
             loader(false);
+            searchBtn.disabled = false;
         }
     });
     req.addEventListener("error", () => {
@@ -71,7 +75,6 @@ searchForm.addEventListener("submit", (e) => {
     loader(true);
     mapDiv.style.height = '0';
     let data = new FormData(searchForm);
-    console.log(searchForm);
     submitForm(processUrl, data, (response) => {
         let receivedData = JSON.parse(response);
         let googleData = receivedData.results.google_maps_api_results;
