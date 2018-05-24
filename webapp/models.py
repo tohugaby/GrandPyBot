@@ -21,3 +21,5 @@ class Word(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String(200), nullable=False)
     category = db.Column(db.Integer, db.ForeignKey("word_type.id"), nullable=False)
+    category_word_index = db.Index("cat_word_idx", category, word)
+    word_index = db.Index("word_idx", word)
