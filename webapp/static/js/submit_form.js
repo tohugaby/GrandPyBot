@@ -2,6 +2,7 @@ const sentenceUrl = "/sentences";
 const processUrl = "/process";
 let searchForm = document.querySelector("form");
 let searchBtn = document.getElementById("search-btn");
+let eraseBtn = document.getElementById("erase-btn");
 let dialogDiv = document.getElementById("dialog");
 let colors = ['#c62e1a', '#13b5db', 'yellow'];
 let loadInterval = null;
@@ -61,7 +62,7 @@ function myMap(mapDiv, lat, long) {
 
 let ajaxGet = (url, callback) => {
     let req = new XMLHttpRequest();
-    req.open("GET", url);
+    req.open("GET", url, true);
     req.addEventListener("load", () => {
         if (req.status >= 200 && req.status < 400) {
             callback(req.responseText);
@@ -77,7 +78,7 @@ let ajaxGet = (url, callback) => {
 
 let ajaxPost = (url, data, callback) => {
     let req = new XMLHttpRequest();
-    req.open("POST", url);
+    req.open("POST", url, true);
     req.addEventListener("load", () => {
         if (req.status >= 200 && req.status < 400) {
             callback(req.responseText);
@@ -128,19 +129,30 @@ let addFullAnswer = (data) => {
 
 searchForm.addEventListener("submit", (e) => {
     addUserQuestion(searchForm.search.value);
-    ajaxGet(sentenceUrl, (response) => {
-        addGrandPyBaseAnswer(JSON.parse(response).sentence);
-        loader(true);
-        let data = new FormData(searchForm);
-        searchBtn.disabled = true;
-        ajaxPost(processUrl, data, (response) => {
-            loader(false);
-            searchBtn.disabled = false;
-            let receivedData = JSON.parse(response);
-            addFullAnswer(receivedData);
+    setTimeout(() => {
+        ajaxGet(sentenceUrl, (response) => {
+            addGrandPyBaseAnswer(JSON.parse(response)['sentence']);
+            loader(true);
+            let data = new FormData(searchForm);
+            searchBtn.disabled = true;
+            eraseBtn.disabled = true;
+            ajaxPost(processUrl, data, (response) => {
+                loader(false);
+                searchBtn.disabled = false;
+                eraseBtn.disabled = false;
+                let receivedData = JSON.parse(response);
+                addFullAnswer(receivedData);
+            });
         });
-    });
+    }, 500);
+
 
     e.preventDefault();
 });
 
+eraseBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    while (dialogDiv.firstChild) {
+        dialogDiv.removeChild(dialogDiv.firstChild);
+    }
+})
