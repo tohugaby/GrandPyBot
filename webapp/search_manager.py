@@ -21,6 +21,8 @@ class SearchConductor:
     def _call_all_api(self, searched_terms):
         if searched_terms:
             return self.api_controller(searched_terms[0]).get_results()
+        return self.api_controller("").get_results()
+
 
     def make_full_search(self):
         parsed_string = self._parse_string()

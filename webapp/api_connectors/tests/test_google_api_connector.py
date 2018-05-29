@@ -88,3 +88,31 @@ def test_google_api_return(**kwargs):
     fake_results = api_connector_instance.search()
     assert fake_results == method_call_results
     assert isinstance(fake_results, dict)
+
+
+@requests_mock.Mocker(kw='mock')
+def test_google_api_not_found_return(**kwargs):
+    """
+    mock to test google maps api connector
+    :param kwargs: contains mock instance among others kwargs
+    :return:
+    """
+    search_term = "stgsdfhrjdrfhdgcshrtjuetrfdrth"
+    api_connector_instance = GoogleMapsApiConnector(search_term)
+    search_url = api_connector_instance.get_search_url()
+    api_results = {'results': [],
+                   'status': 'ZERO_RESULTS'
+                   }
+
+    method_call_results = {
+        "formatted_address": "",
+        "location": {
+            "lat": 0,
+            "lng": 0
+        }
+    }
+
+    kwargs["mock"].get(search_url, text=json.dumps(api_results))
+    fake_results = api_connector_instance.search()
+    assert fake_results == method_call_results
+    assert isinstance(fake_results, dict)

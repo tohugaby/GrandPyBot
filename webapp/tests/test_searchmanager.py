@@ -153,3 +153,25 @@ class TestSearchConductor(TestCase):
         self.assertIn("google_maps_api_results", full_search_result.keys())
         self.assertIn("wikipedia_api_results", full_search_result.keys())
         self.assertEqual(full_search_result, self.json_results)
+
+    def test_space_search(self):
+        search_conductor = SearchConductor(" ")
+        full_search_result = search_conductor.make_full_search()
+        expected = {
+            "google_maps_api_results": {
+                "formatted_address": "",
+                "location": {
+                    "lat": 0,
+                    "lng": 0
+                }
+            },
+            "wikipedia_api_results": {
+                "description": "Ta recherche me semble un peu vide petit canaillou !",
+                "title": "!!!!",
+                "url": ""
+            }
+        }
+
+        self.assertIn("google_maps_api_results", full_search_result.keys())
+        self.assertIn("wikipedia_api_results", full_search_result.keys())
+        self.assertEqual(full_search_result, expected)

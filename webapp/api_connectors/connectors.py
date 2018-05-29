@@ -52,8 +52,21 @@ class GoogleMapsApiConnector(ApiConnector):
         call api with search url
         :return: api json response
         """
+        new_response = {
+            "formatted_address": "",
+            "location": {
+                "lat": 0,
+                "lng": 0
+            }
+        }
+
+        if not self.search_term:
+            return new_response
+
         LOGGER.info(" Getting Google maps data for %s", self.search_term)
         response = super(GoogleMapsApiConnector, self).search()
+        if response['status'] == 'ZERO_RESULTS':
+            return new_response
         new_response = {
             "formatted_address": response["results"][0]["formatted_address"],
             "location": response["results"][0]["geometry"]["location"]
@@ -99,6 +112,12 @@ class WikipediaApiConnector(ApiConnector):
         launch query on wikipedia api
         :return: query result as a dict
         """
+        if not self.search_term:
+            return {
+                "title": "!!!!",
+                "description": "Ta recherche me semble un peu vide petit canaillou !",
+                "url": ""
+            }
 
         query_term, article_url = self._opensearch()
         LOGGER.info("Launch query of %s in wikipedia api", query_term)
@@ -106,11 +125,21 @@ class WikipediaApiConnector(ApiConnector):
         pages = response['query']['pages']
         page = [p for p in pages.keys()][0]
         soup = BeautifulSoup(pages[page]['extract'], "html.parser")
-        description = [p for p in soup.find_all("p")][0]
+        try:
+            description = [p for p in soup.find_all("p")][0]
+            if len(description) == 0:
+                description = "".join(soup.find_all(text=True)[:30]).replace("\n", "") + "..."
+            new_response = {
+                "title": pages[page]['title'],
+                "description": str(description),
+                "url": str(article_url)
+            }
+        except IndexError as index_error:
+            LOGGER.info(index_error)
+            new_response = {
+                "title": pages[page]['title'],
+                "description": 'Désolé mon lapin , Je ne me souviens pas de %s !' % pages[page]['title'],
+                "url": '#'
+            }
 
-        new_response = {
-            "title": pages[page]['title'],
-            "description": str(description),
-            "url": str(article_url)
-        }
         return new_response
