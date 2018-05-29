@@ -5,7 +5,9 @@ Controller module that calls all parser
 from collections import OrderedDict
 
 import logging
+import re
 
+from webapp.models import Word, WordType
 from webapp.parser.parsers import BeforeLinkWorkParser, AfterLinkWorkParser, NonLettersParser, \
     UniqueLetterParser, StopWordsParser, FrenchWordsParser, CountriesParser, CitiesParser
 
@@ -33,8 +35,20 @@ class ParsingController:
         if parsers:
             self.parsers = parsers
         LOGGER.info(" Start parsing: %s", self.in_string)
+        self.database_extract = self.ask_database()
         self.out_list = self._compile_results()
         LOGGER.info(" Parsing finished: %s", self.out_list)
+
+    def ask_database(self):
+        word_in_db = dict()
+        tmp_list = self.in_string.split()
+        splited_string = re.split(r" +|'+|\?+|!+|\.+|_+", " ".join(tmp_list))
+        results = Word.query.join(WordType, Word.category == WordType.id).filter(Word.word.in_(splited_string)).all()
+        for res in results:
+            if res.word_type.type_name not in word_in_db.keys():
+                word_in_db[res.word_type.type_name] = list()
+            word_in_db[res.word_type.type_name].append(res.word)
+        return word_in_db
 
     def _parser_launcher(self, parser):
         """
@@ -42,7 +56,7 @@ class ParsingController:
         :param parser: parser class
         :return: a list
         """
-        return parser(self.in_string).out_list
+        return parser(self.in_string, self.database_extract).out_list
 
     def _paralize_parsing(self):
         parsers_output = []

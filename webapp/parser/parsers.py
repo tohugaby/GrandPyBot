@@ -14,8 +14,9 @@ class LegacyParser:
     """A parser that take an in string and return a list of word
     after comparing this string with another list of words"""
 
-    def __init__(self, in_string):
+    def __init__(self, in_string, database_extract):
         self.in_string = in_string
+        self.database_extract = database_extract
         self.out_list = self._parse_string()
         LOGGER.debug(" %s: %s", self.__class__, self.out_list)
 
@@ -65,8 +66,10 @@ class FromDatabaseCompareListMixin:
         :return: a list of words.
         """
         if self.key:
-            words = Word.query.join(WordType).filter(WordType.type_name == self.key)
-            return [word.word for word in words.all()]
+            if self.key in self.database_extract:
+            #words = Word.query.join(WordType).filter(WordType.type_name == self.key)
+            #return [word.word for word in words.all()]
+                return self.database_extract[self.key]
         return []
 
 
