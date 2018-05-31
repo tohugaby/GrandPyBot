@@ -13,7 +13,7 @@ try:
     from config import GOOGLE_MAP_API_KEY
 except ImportError as import_error:
     LOGGER.error("""%s : You need API keys to use API Connectors !
-    Create an api_keys.py module in project root and store your api keys""", import_error)
+    Create an api_keys.txt module in project root and store your api keys""", import_error)
 
 
 class ApiConnector(object):
@@ -105,7 +105,10 @@ class WikipediaApiConnector(ApiConnector):
         """
         LOGGER.info("Launch opensearch of %s in wikipedia api", self.search_term)
         result = requests.get(self.get_search_url()).json()
-        return result[1][0], result[3][0]
+        try:
+            return result[1][0], result[3][0]
+        except IndexError as index_error:
+            return None, None
 
     def search(self):
         """
@@ -120,6 +123,13 @@ class WikipediaApiConnector(ApiConnector):
             }
 
         query_term, article_url = self._opensearch()
+        if  query_term is None:
+            return {
+                "title": "!!!!",
+                "description": "ça existe ton bidule ?!!!!",
+                "url": ""
+            }
+
         LOGGER.info("Launch query of %s in wikipedia api", query_term)
         response = requests.get(self.get_search_url(query_term=query_term)).json()
         pages = response['query']['pages']

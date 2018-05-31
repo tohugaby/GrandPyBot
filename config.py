@@ -6,13 +6,14 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 try:
-    with open('api_keys.txt') as keys_file:
+    api_key_file_path = os.path.join(base_dir,'api_keys.txt')
+    with open(api_key_file_path) as keys_file:
         from_file_key = keys_file.readlines()[0]
 except FileNotFoundError:
     from_file_key = str()
 
 GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAP_API_KEY') or from_file_key
-
+print(GOOGLE_MAP_API_KEY)
 
 class Config(object):
     DEBUG = False

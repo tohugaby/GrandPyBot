@@ -138,3 +138,29 @@ def test_wikipedia_api_no_paragraph_return(**kwargs):
     fake_results = api_connector_instance.search()
     assert fake_results == response
     assert isinstance(fake_results, dict)
+
+
+@requests_mock.Mocker(kw="mock")
+def test_wikipedia_api_none_opensearch_return(**kwargs):
+    """
+    mock to test wikipedia api connector return
+    :param kwargs: contains mock instance among others kwargs
+    :return:
+    """
+    search_term = "qsjhfkjqkdjgkdfsjgkl"
+    api_connector_instance = WikipediaApiConnector(search_term)
+    opensearch_url = api_connector_instance.get_search_url()
+    search_url = api_connector_instance.get_search_url(query_term="A")
+    opensearch_results = ['qsjhfkjqkdjgkdfsjgkl', [], [], []]
+
+
+    response = {
+                "title": "!!!!",
+                "description": "ça existe ton bidule ?!!!!",
+                "url": ""
+            }
+
+    kwargs["mock"].get(opensearch_url, text=json.dumps(opensearch_results))
+    fake_results = api_connector_instance.search()
+    assert fake_results == response
+    assert isinstance(fake_results, dict)

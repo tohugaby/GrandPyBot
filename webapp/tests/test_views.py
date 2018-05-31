@@ -34,10 +34,10 @@ class TestProcessView(TestCase):
             FiletoDbHandler(db, key)()
 
     def test_success(self):
-        self.assert200(self.client.post("/process", follow_redirects=True, data=dict(test="text de test")))
+        self.assert200(self.client.post("/process", follow_redirects=True, data=dict(search=self.in_string)))
 
     def test_return_data(self):
-        request = self.client.post("/process", follow_redirects=True, data=dict(search="text de test"))
+        request = self.client.post("/process", follow_redirects=True, data=dict(search=self.in_string))
         for response in request.response:
             self.assertIsInstance(response, bytes)
 
