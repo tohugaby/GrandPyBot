@@ -1,4 +1,6 @@
 import os
+import random
+import string
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -75,4 +77,17 @@ class DevConfig(Config):
 
 
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = "postgresql://localhost/grandpybot"
+    DEBUG = False
+    TESTING = False
+    if not os.path.exists('secret.txt'):
+        with open('secret.txt', 'w') as secret_file:
+            new_secret = "".join(
+                [random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(24)])
+            secret_file.write(new_secret)
+    with open('secret.txt', 'r') as secret_file:
+        SECRET_KEY = "".join(secret_file.readlines())
+
+    if os.environ.get('DATABASE_URL') is None:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, "grandpy.db")
+    else:
+        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')

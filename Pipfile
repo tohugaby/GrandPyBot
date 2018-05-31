@@ -19,6 +19,7 @@ requests = "*"
 requests-mock = "*"
 pylint = "*"
 "beautifulsoup4" = "*"
+gunicorn = "*"
 
 
 [dev-packages]

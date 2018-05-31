@@ -1,8 +1,10 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config.from_object('config.DevConfig')
+config = os.environ.get('FLASK_CONFIG') or 'config.DevConfig'
+app.config.from_object(config)
 db = SQLAlchemy(app)
 from webapp import routes
 from webapp.word_files_handler.initial_data_handlers import FiletoDbHandler
