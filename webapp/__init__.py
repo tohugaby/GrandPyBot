@@ -15,3 +15,5 @@ def init_db():
     db.create_all()
     for key in app.config["DATA_LOAD_CONFIG"].keys():
         FiletoDbHandler(db, key)()
+
+

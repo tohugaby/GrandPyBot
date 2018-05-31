@@ -108,6 +108,6 @@ ENV/
 webapp/.pytest_cache/
 test.db
 grandpy.db
-api_keys.py
 sandbox.py
 secret.txt
+api_keys.txt

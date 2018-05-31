@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
 
 try:
-    from api_keys import GOOGLE_MAP_API_KEY
+    from config import GOOGLE_MAP_API_KEY
 except ImportError as import_error:
     LOGGER.error("""%s : You need API keys to use API Connectors !
     Create an api_keys.py module in project root and store your api keys""", import_error)

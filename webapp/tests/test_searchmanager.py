@@ -5,8 +5,8 @@ import json
 import requests_mock
 from flask_testing import TestCase
 
-from api_keys import GOOGLE_MAP_API_KEY
 from webapp import app
+from config import GOOGLE_MAP_API_KEY
 from webapp.models import db
 from webapp.search_manager import SearchConductor
 from webapp.word_files_handler.initial_data_handlers import FiletoDbHandler

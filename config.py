@@ -5,6 +5,15 @@ import string
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
 
+try:
+    with open('api_keys.txt') as keys_file:
+        from_file_key = keys_file.readlines()[0]
+except FileNotFoundError:
+    from_file_key = str()
+
+GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAP_API_KEY') or from_file_key
+
+
 class Config(object):
     DEBUG = False
     TESTING = False
