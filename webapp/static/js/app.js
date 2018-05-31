@@ -134,6 +134,7 @@ searchForm.addEventListener("submit", (e) => {
             addGrandPyBaseAnswer(JSON.parse(response)['sentence']);
             loader(true);
             let data = new FormData(searchForm);
+            searchForm.search.value = '';
             searchBtn.disabled = true;
             eraseBtn.disabled = true;
             ajaxPost(processUrl, data, (response) => {
@@ -152,7 +153,8 @@ searchForm.addEventListener("submit", (e) => {
 
 eraseBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    searchForm.search.value = '';
     while (dialogDiv.firstChild) {
         dialogDiv.removeChild(dialogDiv.firstChild);
     }
-})
+});
