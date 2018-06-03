@@ -5,8 +5,8 @@ import json
 import requests_mock
 from flask_testing import TestCase
 
-from webapp import app
 from config import GOOGLE_MAP_API_KEY
+from webapp import app
 from webapp.models import db
 from webapp.search_manager import SearchConductor
 from webapp.word_files_handler.initial_data_handlers import FiletoDbHandler
@@ -22,7 +22,7 @@ class TestSearchConductor(TestCase):
         db.create_all()
         for key in app.config["DATA_LOAD_CONFIG"].keys():
             FiletoDbHandler(db, key)()
-        self.parsing_results = ['Openclassrooms', 'Paris']
+        self.parsing_results = ['Openclassrooms', 'à', 'Paris', 'd', 'adresse']
         search_term = 'Openclassrooms'
         self.google_map_api_url = "https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s" % (
             search_term, GOOGLE_MAP_API_KEY)

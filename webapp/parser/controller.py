@@ -9,7 +9,7 @@ import re
 
 from webapp.models import Word, WordType
 from webapp.parser.parsers import BeforeLinkWorkParser, AfterLinkWorkParser, NonLettersParser, \
-    UniqueLetterParser, StopWordsParser, FrenchWordsParser, CountriesParser, CitiesParser
+    UniqueLetterParser, StopWordsParser, FrenchWordsParser, CountriesParser, CitiesParser, ExpressionParser
 
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
@@ -20,6 +20,7 @@ class ParsingController:
     Controller that launch all parser and define by weight ordered list results
     """
     parsers = [
+        (ExpressionParser, 5),
         (BeforeLinkWorkParser, 2),
         (AfterLinkWorkParser, 0.3),
         (NonLettersParser, 1),
@@ -78,9 +79,9 @@ class ParsingController:
             for i, value in enumerate(partial_result[0]):
 
                 if value in tmp_dict.keys():
-                    tmp_dict[value] *= (i + 1) * partial_result[1]
+                    tmp_dict[value] *= (i + 1) / len(partial_result[0]) * partial_result[1]
                 else:
-                    tmp_dict[value] = (i + 1) * partial_result[1]
+                    tmp_dict[value] = (i + 1) / len(partial_result[0]) * partial_result[1]
         tmp_dict = OrderedDict(sorted(tmp_dict.items(), key=lambda x: x[1], reverse=True))
         LOGGER.debug(" words grades: %s", tmp_dict)
         if len(tmp_dict):

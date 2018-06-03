@@ -4,7 +4,7 @@ from webapp import FiletoDbHandler
 from webapp import app
 from webapp import db
 from webapp.parser.parsers import LegacyParser, StopWordsParser, FrenchWordsParser, NonLettersParser, CitiesParser, \
-    CountriesParser, UniqueLetterParser, BeforeLinkWorkParser, AfterLinkWorkParser
+    CountriesParser, UniqueLetterParser, BeforeLinkWorkParser, AfterLinkWorkParser, ExpressionParser
 
 
 class TestLegacyParser:
@@ -194,5 +194,20 @@ class TestCountriesParser(TestCase):
         assert len(self.in_list) > len(parser.out_list)
         assert "Japon" in parser.out_list
 
-# class TestLastWordParser:
-#     pass
+class TestKeyWordParser:
+    def setup_method(self):
+        self.in_string = "Salut GrandPy ! Est-ce que tu connais la rue de la République à Lyon ?"
+        self.database_extract = dict()
+
+    def teardown_method(self):
+        pass
+
+    def test_parse_string(self):
+        parser = ExpressionParser(self.in_string, self.database_extract)
+        assert isinstance(parser.out_list, list)
+        assert parser.out_list != self.in_string
+        assert len(self.in_string) > len(parser.out_list)
+        assert len(parser.out_list) == 1
+        assert "rue de la République" in parser.out_list
+        assert "République" not in parser.out_list
+

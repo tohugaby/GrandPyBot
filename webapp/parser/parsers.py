@@ -4,8 +4,6 @@ All the parsers used to parse user question.
 import logging
 import re
 
-from webapp.models import WordType, Word
-
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
 
@@ -67,8 +65,8 @@ class FromDatabaseCompareListMixin:
         """
         if self.key:
             if self.key in self.database_extract:
-            #words = Word.query.join(WordType).filter(WordType.type_name == self.key)
-            #return [word.word for word in words.all()]
+                # words = Word.query.join(WordType).filter(WordType.type_name == self.key)
+                # return [word.word for word in words.all()]
                 return self.database_extract[self.key]
         return []
 
@@ -175,3 +173,47 @@ class CitiesParser(FromDatabaseCompareListMixin, NonLettersParser):
 class CountriesParser(FromDatabaseCompareListMixin, NonLettersParser):
     """A parser which compare provided string with a list of countries"""
     key = "countries"
+
+
+class ExpressionParser(LegacyParser):
+    """"""
+
+    def _parse_string(self):
+        return self._apply_parsing(self._get_compare_list())
+
+    def _get_compare_list(self):
+        return self._split_string()
+
+    def _apply_parsing(self, compare_list, contained=True):
+        """
+        Compare provided list with comparing list of word and
+        generate a new list containing intersection of both list
+        if contained parameter is True (default usage) or
+        the opposite if contained is False
+        :param compare_list: list of words used to compare with initial string words
+        :param contained: define what to return.
+        :return: a list of words
+        """
+        if contained:
+            return [word for word in self._split_string() if word in compare_list and word != str()]
+        return [word for word in self._split_string() if word not in compare_list and word != str()]
+
+    def _split_string(self):
+        result = list()
+        sub_list = list()
+        tmp_list = self.in_string.split(" ")
+        tmp_string = str()
+        for e, word in enumerate(tmp_list):
+            if word.lower() in ['rue', 'place', 'avenue', 'impasse', 'route', 'lotissement', 'lieu-dit', 'quartier']:
+                tmp_string += word
+                sub_list = tmp_list[e + 1:]
+                break
+        for e, word in enumerate(sub_list):
+            tmp_string += " " + word
+            if word.lower() not in ["du", "de", "la", "de"]:
+                break
+        print(tmp_string)
+
+        result.append(tmp_string)
+        print(result)
+        return result
