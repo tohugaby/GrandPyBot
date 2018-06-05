@@ -204,7 +204,10 @@ class ExpressionParser(LegacyParser):
         tmp_list = self.in_string.split(" ")
         tmp_string = str()
         for e, word in enumerate(tmp_list):
-            if word.lower() in ['rue', 'place', 'avenue', 'impasse', 'route', 'lotissement', 'lieu-dit', 'quartier']:
+            if word.lower() in ['rue', 'place', 'avenue', 'impasse', 'route', 'lotissement', 'lieu-dit', 'quartier',
+                                'tour', 'château', 'parc', 'basilique', 'église', 'abbaye', 'chemin', 'carrefour',
+                                'site', 'musée', 'chapelle', 'cimetière', 'passage', 'synagogue', 'mosquée',
+                                'théâtre', 'cathédrale', 'cour']:
                 tmp_string += word
                 sub_list = tmp_list[e + 1:]
                 break

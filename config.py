@@ -13,7 +13,6 @@ except FileNotFoundError:
     from_file_key = str()
 
 GOOGLE_MAP_API_KEY = os.environ.get('GOOGLE_MAP_API_KEY') or from_file_key
-print(GOOGLE_MAP_API_KEY)
 
 class Config(object):
     DEBUG = False
