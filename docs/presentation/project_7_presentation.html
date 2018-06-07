@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Projet 7</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-light bg-light row">
+            <h1 class="navbar-brand mb-0 h1 col text-center">Projet n°7 par Tom Gabrièle GrandPyBot</h1>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="flex-row d-flex flex-wrap justify-content-between" id="card-list">
+            <button class="card bg-light text-center p-8" data-toggle="collapse" data-target="#item-0">
+                <div class="card-body">
+                    <p class="card-text">Project Grand'Py ?</p>
+                </div>
+            </button>
+            <button class="card bg-primary text-white text-center p-8" data-target="#item-1" data-toggle="collapse">
+                <div class="card-body">
+                    <p class="card-text">I know what you did last commit...</p>
+                </div>
+            </button>
+            <button class="card bg-success text-white text-center p-8" data-target="#item-2" data-toggle="collapse">
+                <div class="card-body">
+                    <p class="card-text">The (almost) NeverEnding Test Cycle.</p>
+                </div>
+            </button>
+
+            <button class="card bg-secondary text-white text-center p-8" data-toggle="collapse" data-target="#item-3">
+                <div class="card-body">
+                    <p class="card-text">One controller to rule them all !</p>
+                </div>
+            </button>
+            <button class="card bg-dark text-white text-center p-8" data-toggle="collapse" data-target="#item-4">
+                <div class="card-body">
+                    <p class="card-text">Words Attack !</p>
+                </div>
+            </button>
+            <button class="card bg-danger text-white text-center p-8" data-toggle="collapse" data-target="#item-5">
+                <div class="card-body">
+                    <p class="card-text">"Application Beauty"</p>
+                </div>
+            </button>
+            <button class="card bg-warning text-white text-center p-8" data-toggle="collapse" data-target="#item-6">
+                <div class="card-body">
+                    <p class="card-text">Result is Coming !</p>
+                </div>
+            </button>
+            <button class="card bg-light text-center p-8" data-toggle="collapse" data-target="#item-7">
+                <div class="card-body">
+                    <p class="card-text">Super size my database</p>
+                </div>
+            </button>
+
+            <button class="card bg-primary text-white text-center p-8" data-toggle="collapse" data-target="#item-8">
+                <div class="card-body">
+                    <p class="card-text">Back to the structure !</p>
+                </div>
+            </button>
+
+            <a class="card bg-success text-white text-center p-8" href="https://grand-py-bot-tom.herokuapp.com" target="_blank">
+                <div class="card-body">
+                    <p class="card-text">Genkidemo !</p>
+                </div>
+            </a>
+            <button class="card bg-secondary text-white text-center offset-4 p-8" data-toggle="collapse" data-target="#item-9">
+                <div class="card-body">
+                    <p class="card-text">The app after...</p>
+                </div>
+            </button>
+        </div>
+
+        <div id="content-container" class="row">
+            <div class="content-item collapse show" id="item-0">
+
+                <h2>Créer un robot qui vous répondrait comme votre grand-père !</h2>
+                <p>
+                    Si vous lui demandez l'adresse d'un lieu, il vous la donnera, certes, mais agrémentée d'un long récit très intéressant.
+                </p>
+            </div>
+
+            <div class="content-item collapse" id="item-1">
+                <h2>Git + Github</h2>
+                <ul>
+                    <li>2 branches principales
+                        <em>master</em> et
+                        <em>development</em>
+                    </li>
+                    <li>1 fonctionnalité = 1 branche </li>
+                    <li>Fonctionnalité terminée -> merge avec
+                        <em>development</em>
+                    </li>
+                    <li>1er merge avec
+                        <em>master</em> = 1ère version fonctionnelle</li>
+                </ul>
+            </div>
+            <div class="content-item collapse" id="item-2">
+                <h2>Test Driven Development</h2>
+                <ol>
+                    <li>Nouvelle branche à partir de la branche
+                        <em>development</em>.
+                    </li>
+                    <li>Écriture d'un test.</li>
+                    <li>Lancement et échec du test.</li>
+                    <li>Écriture du code pour faire fonctionner le test.</li>
+                    <li>Amélioration du test.</li>
+                    <li>Retour à l'étape 3 tant que c'est nécessaire.</li>
+                    <li>Lancement de tous les tests du projet.</li>
+                    <li>Correction si nécessaire.</li>
+                    <li>Commit de la fonctionnalité.</li>
+                </ol>
+            </div>
+            <div class="content-item collapse" id="item-3">
+                <h2>Parser</h2>
+                <ol>
+                    <li>Splitter la chaîne initiale en liste</li>
+                    <li>Définir une liste de mots de comparaison à partir de la base de données ou à partir d'un algorithme</li>
+                    <li>Comparer les 2 listes</li>
+                    <li>Renvoyer les mots présents dans les 2 listes ou ceux absent de la liste de comparaison (selon le besoin)</li>
+
+                </ol>
+                <h2>ParsingController</h2>
+                <ol>
+                    <li>Pondérer les résultat de chaque parser avec un coefficient</li>
+                    <li>Pondérer l'importance de chaque mot en fonction de sa position dans la liste</li>
+                </ol>
+                <h2>API Connector</h2>
+                <p>Fait un appel à l'API et renvoie une réponse structurée.</p>
+                <h2>API Controller</h2>
+                <p>Commande les API Connector et agrège les résultats.</p>
+
+            </div>
+            <div class="content-item collapse" id="item-4">
+                <h2>La mécanique des parsers </h2>
+                <p> Repose sur l'extraction des mots ou expressions clés.</p>
+                <ol>
+                    <li>Constituer un référentiel de mots (mots français, pays , villes...)</li>
+                    <li>Chaque fichier a un
+                        <em>handler</em> associé qui va extraire les données</li>
+                    <li>Appels successifs des handlers et insert SQL</li>
+                </ol>
+            </div>
+            <div class="content-item collapse" id="item-5">
+                <h2>Backend:</h2>
+                <ul>
+                    <li>3 vues:
+                        <strong>index</strong> (page unique),
+                        <strong>process</strong> (appel de SearchConductor),
+                        <strong>sentences</strong> (phrase aléatoire)
+                    </li>
+                </ul>
+                <h2>Frontend:</h2>
+                <ul>
+                    <li>CSS : Bootstrap4 + CSS personnalisé</li>
+                    <li>JavaScript: ES6 et Jquery uniquement pour Bootstrap4</li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="content-item collapse" id="item-6">
+                <h2>Optimisation du ParsingController</h2>
+                <div class="row">
+                    <div class="col-4">
+                        <h3>ParsingController V1</h3>
+                        <p>Même requête SQL * nombre parser = 10s</p>
+
+                    </div>
+                    <div class="col-4">
+                        <h3>Constat</h3>
+                        <p>Le résultat de la requête ne change pas !</p>
+                    </div>
+                    <div class="col-4">
+                        <h3>ParsingController V2</h3>
+                        <p>
+                            Résultat d'un seul appel SQL = 1s
+                        </p>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="content-item collapse" id="item-7">
+                <h2>assert 10000 == 450233 </h2>
+                <div class="row">
+                    <div class="col-3">
+                        <h3>Limite Postgres Hobby database</h3>
+                        <p>10000 lignes</p>
+                    </div>
+                    <div class="col-3">
+                        <h3>Base de données GrandPyBot</h3>
+                        <p>450233 lignes</p>
+                    </div>
+                    <div class="col-3">
+                        <h3>
+                            ===>
+                        </h3>
+                    </div>
+                    <div class="col-3">
+                        <h3>Alerte de Heroku</h3>
+                        <p>
+                            ROWS ABOVE LIMITS, ACCESS DISRUPTION IMMINENT
+                            <br /> Coupure de l'accès au projet ?
+                        </p>
+                    </div>
+                </div>
+                <h2>Non</h2>
+                <p>
+                    Heroku coupe seulement l'accès en écriture à la base de données.
+                    <br/> Plus d'infos
+                    <a href="https://devcenter.heroku.com/articles/heroku-postgres-plans#hobby-tier">ici</a>
+
+                </p>
+
+
+            </div>
+            <div class="content-item collapse" id="item-8">
+                <h2>Faux départ</h2>
+                <div class="row">
+                    <div class="col-3">
+                        <h3>parser, api_connector, word_file_handler des applications à part entière ?</h3>
+                    </div>
+                    <div class="col-3">
+                        <h3>Microservices? Non c'est trop gros! Pourquoi pas Blueprints?</h3>
+                        <p>Je crée des sous applications.</p>
+                    </div>
+                    <div class="col-3">
+                        <h3>Simple is Better than Complex.</h3>
+                        <p>Finalement cette structure est trop complexe compte-tenu de la teneur du projet.</p>
+                    </div>
+                    <div class="col-3">
+                        <h3>Back to the structure</h3>
+                        <p>
+                            Réintégration des librairies
+                            <em>parser</em>,
+                            <em>api_connector</em>,
+                            <em>word_file_handler</em> dans l'application principale qui ne fonctionne pas sans eux.
+                    </p>
+                    </div>
+
+
+                    <div class="col-3"></div>
+                </div>
+            </div>
+
+            <div class="content-item collapse" id="item-9">
+                <h2>Pistes d'amélioration</h2>
+                <ul>
+                    <li>Refactoring du javascript,</li>
+                    <li>Utilisation de Webpack et Babel,</li>
+                    <li>Optimiser la taille des assets,</li>
+                    <li>Rendre les parsers asynchrones,</li>
+                    <li>Prise en compte des noms de lieux en plusieurs mots,</li>
+                    <li>Fractionner le template index .</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="Cycle itératif en TDDsha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+
+    <script>
+        $('.content-item').on('show.bs.collapse', function () {
+            ($('.show')).collapse('hide')
+        })
+    </script>
+</body>
+
+</html>
