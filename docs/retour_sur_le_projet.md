@@ -25,8 +25,8 @@ Pour alimenter ces 2 tables, je me suis basé sur une variable de configuration 
 
 #### Les parsers
 Les **parsers** ont pour rôle de prendre une chaîne de caractères en entrée et d'en ressortir une liste de mots.
-Pour cela il faut "splitter" la chaîne transmise puis la comparer avec une liste de mots issue soit de la base de données (des villes par exemple ou des "stop words") et renvoyer uniquement les mots de la chaîne initiale qui sont présents dans les 2 listes ou l'inverse selon ce que l'on veut mettre en évidence. Par exemple:
-- Si le**parser** est basé sur la liste des villes, il renvoie uniquement les noms de villes contenus dans la chaîne transmise.
+Pour cela il faut "splitter" la chaîne transmise puis la comparer avec une liste de mots issue soit d'une variable "en dur" soit de la base de données (des villes par exemple ou des "stop words") et renvoyer uniquement les mots de la chaîne initiale qui sont présents dans les 2 listes ou l'inverse selon ce que l'on veut mettre en évidence. Par exemple:
+- Si le **parser** est basé sur la liste des villes, il renvoie uniquement les noms de villes contenus dans la chaîne transmise.
 - Si ce dernier est basé sur les "stop words", il renvoie tous les mots de la chaîne initiale excepté les stop words...
  
 Chaque mot et chaque **parser** n'a pas la même importance. Pour arbitrer le choix sur les résultats les plus importants, j'utilise un **ParsingController**. Celui-ci appelle successivement tous les **parsers** et applique un coefficient de pondération sur chaque résultat. L'ordre des mots dans la question initiale est également pris en compte.
@@ -76,7 +76,7 @@ J'ai d'abord pensé à créer plusieurs applications **Flask** sous forme de mic
 
 J'ai ensuite découvert le concept des **Blueprints** propre à **Flask**. Il s'agit finalement de créer des sous applications dans l'application en se basant sur un système de "namespace". J'ai donc commencé à structurer mon application en utilisant les **Blueprints**. 
 
-Finalement, je me suis rendu compte que j'apportais de la complexité à là où il n'y en avait pas besoin. Les **parsers** et **api connectors** ne sont pas des applications à part entière. Ils font partie intégrante de l'application principale car celle-ci ne peut absolument pas fonctionner sans eux.
+Finalement, je me suis rendu compte que j'apportais de la complexité là où il n'y en avait pas besoin. Les **parsers** et **api connectors** ne sont pas des applications à part entière. Ils font partie intégrante de l'application principale car celle-ci ne peut absolument pas fonctionner sans eux.
 
 J'ai donc fait machine arrière et complètement restructuré mon application.
 
